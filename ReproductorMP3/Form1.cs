@@ -972,7 +972,7 @@ namespace ReproductorMP3
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al reproducir: " + ex.Message);
+                MessageBox.Show("Error al reproducir:" + ex.Message);
             }
         }
     }
