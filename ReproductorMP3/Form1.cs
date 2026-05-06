@@ -895,7 +895,19 @@ namespace ReproductorMP3
         {
             if (audioFile != null)
             {
-                audioFile.CurrentTime = audioFile.CurrentTime.Subtract(TimeSpan.FromSeconds(5));
+                TimeSpan tiempoActual = audioFile.CurrentTime;
+                
+                // Si el tiempo actual es menor que 5 segundos, reiniciar desde el principio
+                if (tiempoActual.TotalSeconds < 5)
+                {
+                    audioFile.CurrentTime = TimeSpan.Zero;
+                    trackDuracion.Value = 0;
+                }
+                else
+                {
+                    // Si no, restar 5 segundos normalmente
+                    audioFile.CurrentTime = tiempoActual.Subtract(TimeSpan.FromSeconds(5));
+                }
             }
         }
         private void pictLoop_Click(object sender, EventArgs e)
